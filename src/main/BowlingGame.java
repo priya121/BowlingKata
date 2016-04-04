@@ -12,7 +12,10 @@ public class BowlingGame {
         int score = 0;
         int frameIndex = 0;
         for (int frame = 0; frame < 10; frame++) {
-            if (isSpare(frameIndex)) {
+            if (knockedPins[frameIndex] == 10) {
+                score += 10 + knockedPins[frameIndex + 1] + knockedPins[frameIndex + 2];
+                frameIndex++;
+            } else if (isSpare(frameIndex)) {
                 score += 10 + knockedPins[frameIndex + 2];
                 frameIndex += 2;
             } else {
