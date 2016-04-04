@@ -10,17 +10,20 @@ public class BowlingGame {
 
     public int score() {
         int score = 0;
-        int i = 0;
+        int frameIndex = 0;
         for (int frame = 0; frame < 10; frame++) {
-            if (knockedPins[i] + knockedPins[i + 1] == 10)
-            {
-                score += 10 + knockedPins[i + 2];
-                i += 2;
+            if (isSpare(frameIndex)) {
+                score += 10 + knockedPins[frameIndex + 2];
+                frameIndex += 2;
             } else {
-                score += knockedPins[i] + knockedPins[i + 1];
-                i += 2;
+                score += knockedPins[frameIndex] + knockedPins[frameIndex + 1];
+                frameIndex += 2;
             }
         }
         return score;
+    }
+
+    private boolean isSpare(int i) {
+        return knockedPins[i] + knockedPins[i + 1] == 10;
     }
 }
